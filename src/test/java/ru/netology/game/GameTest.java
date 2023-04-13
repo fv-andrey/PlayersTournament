@@ -15,9 +15,9 @@ public class GameTest {
     void shouldShowTieBetweenPlayers() {
         Game game = new Game();
 
-        game.register(player1);
-        game.register(player2);
-        game.register(player3);
+        game.register("Fox", player1);
+        game.register("Bear", player2);
+        game.register("Wolf", player3);
 
         int expected = 0;
         int actual = game.round("Fox", "Wolf");
@@ -29,9 +29,9 @@ public class GameTest {
     void shouldShowWinTheSecondPlayer() {
         Game game = new Game();
 
-        game.register(player1);
-        game.register(player2);
-        game.register(player3);
+        game.register("Fox", player1);
+        game.register("Bear", player2);
+        game.register("Wolf", player3);
 
         int expected = 2;
         int actual = game.round("Fox", "Bear");
@@ -43,9 +43,9 @@ public class GameTest {
     void shouldShowWinTheFirstPlayer() {
         Game game = new Game();
 
-        game.register(player1);
-        game.register(player2);
-        game.register(player3);
+        game.register("Fox", player1);
+        game.register("Bear", player2);
+        game.register("Wolf", player3);
 
         int expected = 1;
         int actual = game.round("Bear", "Fox");
@@ -57,9 +57,9 @@ public class GameTest {
     void shouldGenerateNotRegisteredExceptionWhenFirstPlayerIsNotRegistered() {
         Game game = new Game();
 
-        game.register(player1);
-        game.register(player2);
-        game.register(player3);
+        game.register("Fox", player1);
+        game.register("Bear", player2);
+        game.register("Wolf", player3);
 
         Assertions.assertThrows(NotRegisteredException.class, () -> {
             game.round("Hare", "Fox");
@@ -70,9 +70,9 @@ public class GameTest {
     void shouldGenerateNotRegisteredExceptionWhenSecondPlayerIsNotRegistered() {
         Game game = new Game();
 
-        game.register(player1);
-        game.register(player2);
-        game.register(player3);
+        game.register("Fox", player1);
+        game.register("Bear", player2);
+        game.register("Wolf", player3);
 
         Assertions.assertThrows(NotRegisteredException.class, () -> {
             game.round("Wolf", "Hare");

@@ -3,20 +3,19 @@ package ru.netology.game;
 import ru.netology.exception.NotRegisteredException;
 import ru.netology.player.Player;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.HashMap;
 
 public class Game {
 
-    List<Player> players = new ArrayList<>();
+    HashMap<String, Player> players = new HashMap<>();
 
-    public void register(Player player) {
-        players.add(player);
+    public void register(String name, Player player) {
+        players.put(name, player);
     }
 
     public Player findPlayer1(String playerName1) {
-        for (Player player : players) {
+        for (String key : players.keySet()) {
+            Player player = players.get(key);
             if (player.getName().equals(playerName1)) {
                 return player;
             }
@@ -25,7 +24,8 @@ public class Game {
     }
 
     public Player findPlayer2(String playerName2) {
-        for (Player player : players) {
+        for (String key : players.keySet()) {
+            Player player = players.get(key);
             if (player.getName().equals(playerName2)) {
                 return player;
             }
@@ -44,19 +44,11 @@ public class Game {
                     "Player " + playerName2 + " not registered"
             );
         }
-        int strength1 = 0;
-        int strength2 = 0;
-        for (Player player : players) {
-            if (player.getName().equals(playerName1)) {
-                strength1 = player.getStrength();
-            }
-            if (player.getName().equals(playerName2)) {
-                strength2 = player.getStrength();
-            }
-        }
-        if (strength1 > strength2) {
+        Player player1 = players.get(playerName1);
+        Player player2 = players.get(playerName2);
+        if (player1.getStrength() > player2.getStrength()) {
             return 1;
-        } else if (strength1 < strength2) {
+        } else if (player1.getStrength() < player2.getStrength()) {
             return 2;
         } else {
             return 0;
